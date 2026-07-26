@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Management System</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+
+<div class="loader">
+
+    <div class="loader-logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+    </div>
+
+    <h2>Student Management</h2>
+
+    <p>Loading...</p>
+
+</div>
+
+
+
+
+<div class="app">
+
+
+
+<aside class="sidebar">
+
+
+<div class="profile">
+
+<div class="avatar">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+
+<h3>ADMIN</h3>
+
+<span>
+● Online
+</span>
+
+
+</div>
+
+
+
+
+<nav>
+
+
+<a href="#" id="logoutBtn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+
+
+<a href="#dashboard" class="active">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+
+
+<a href="#mahasiswa">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Mahasiswa
+
+</a>
+
+
+
+
+<a href="#jurusan">
+
+<i class="fa-solid fa-building-columns"></i>
+
+Jurusan
+
+</a>
+
+
+
+
+<a href="#matkul">
+
+<i class="fa-solid fa-book"></i>
+
+Mata Kuliah
+
+</a>
+
+
+
+
+<a href="#statistik">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Statistik
+
+</a>
+
+
+</nav>
+
+
+</aside>
+
+
+
+
+
+
+
+<main class="content">
+
+
+
+
+
+<header class="navbar">
+
+
+<div>
+
+
+<h1>
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+Student Management System
+
+</h1>
+
+
+<p>
+Sistem Informasi Akademik
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="header-right">
+
+
+<div class="search-box">
+
+<i class="fa fa-search"></i>
+
+<input 
+id="search"
+placeholder="Cari mahasiswa">
+
+</div>
+
+
+
+<button 
+onclick="darkMode()"
+class="dark-btn">
+
+🌙
+
+</button>
+
+
+<div id="tanggal"></div>
+
+
+</div>
+
+
+</header>
+
+
+
+
+
+
+<section class="dashboard" id="dashboard">
+
+
+<div class="card blue">
+
+
+<div class="icon">
+
+<i class="fa fa-user-graduate"></i>
+
+</div>
+
+
+<h3>
+Total Mahasiswa
+</h3>
+
+
+<h2 id="totalMahasiswa">
+0
+</h2>
+
+
+</div>
+
+
+
+
+<div class="card green">
+
+
+<div class="icon">
+
+<i class="fa fa-building"></i>
+
+</div>
+
+
+<h3>
+Total Jurusan
+</h3>
+
+
+<h2 id="totalJurusan">
+0
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="card purple">
+
+
+<div class="icon">
+
+<i class="fa fa-book"></i>
+
+</div>
+
+
+<h3>
+Total Mata Kuliah
+</h3>
+
+
+<h2 id="totalMatkul">
+0
+</h2>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="panel" id="statistik">
+
+
+<h2>
+
+<i class="fa fa-chart-bar"></i>
+
+Statistik Mahasiswa
+
+</h2>
+
+
+<canvas id="chartMahasiswa"></canvas>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="panel" id="mahasiswa">
+
+
+<h2>
+Data Mahasiswa
+</h2>
+
+
+
+
+<form id="formMahasiswa">
+
+
+<div class="grid-form">
+
+
+
+<input 
+id="nama"
+placeholder="Nama Mahasiswa">
+
+
+
+<input 
+id="nim"
+placeholder="NIM">
+
+
+
+<input 
+id="email"
+placeholder="Email">
+
+
+
+<select id="jurusan_id">
+
+
+<option value="">
+
+Pilih Jurusan
+
+</option>
+
+
+</select>
+
+
+
+
+<input 
+id="alamat"
+placeholder="Alamat">
+
+
+
+<input 
+type="date"
+id="tanggal_lahir">
+
+
+
+</div>
+
+
+
+<button class="save">
+
+Simpan
+
+</button>
+
+
+
+</form>
+<table>
+
+<thead>
+
+<tr>
+
+<th>No</th>
+<th>Nama</th>
+<th>NIM</th>
+<th>Email</th>
+<th>Jurusan</th>
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="dataMahasiswa">
+
+</tbody>
+
+
+</table>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="panel" id="jurusan">
+
+
+<h2>
+Data Jurusan
+</h2>
+
+
+
+<form id="formJurusan">
+
+
+<input 
+id="nama_jurusan"
+placeholder="Nama Jurusan">
+
+
+
+<button class="save">
+
+Tambah
+
+</button>
+
+
+</form>
+
+
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+<th>No</th>
+
+<th>Jurusan</th>
+
+<th>Aksi</th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody id="dataJurusan">
+
+
+</tbody>
+
+
+</table>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="panel" id="matkul">
+
+
+<h2>
+Mata Kuliah
+</h2>
+
+
+
+
+<form id="formMatkul">
+
+
+<input
+id="nama_matkul"
+placeholder="Nama Mata Kuliah">
+
+
+
+<input
+id="sks"
+placeholder="Jumlah SKS">
+
+
+
+<select id="matkul_jurusan_id">
+
+
+<option value="">
+
+Pilih Jurusan
+
+</option>
+
+
+</select>
+
+
+
+
+<button class="save">
+
+Tambah
+
+</button>
+
+
+</form>
+
+
+
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+<th>No</th>
+
+<th>Mata Kuliah</th>
+
+<th>SKS</th>
+
+<th>Aksi</th>
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="dataMatkul">
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</section>
+
+
+
+
+
+
+
+<footer>
+
+
+Student Management System v3.0
+
+<br>
+
+Created by Tio Alfarizi
+
+<br>
+
+© 2026
+
+
+</footer>
+
+
+
+
+</main>
+
+
+</div>
+
+
+
+
+
+
+<div id="toast"></div>
+
+
+
+
+
+
+
+<script>
+
+
+// CEK LOGIN
+
+
+if(localStorage.getItem("login") !== "true"){
+
+
+    window.location.replace("login.html");
+
+
+}
+
+
+
+
+// LOGOUT
+
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+
+if(logoutBtn){
+
+
+logoutBtn.addEventListener("click",function(e){
+
+
+    e.preventDefault();
+
+
+    localStorage.removeItem("login");
+
+
+    window.location.replace("login.html");
+
+
+});
+
+
+}
+
+
+
+</script>
+
+
+
+
+<script src="script.js"></script>
+
+
+
+</body>
+
+</html>
